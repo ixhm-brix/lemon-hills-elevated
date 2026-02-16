@@ -61,7 +61,7 @@ const RoomImage = ({ room }: { room: typeof rooms[0] }) => (
     <img
       src={room.img}
       alt={room.name}
-      className="w-full h-[320px] md:h-[480px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
+      className="w-full h-[240px] md:h-[340px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
       loading="lazy"
     />
   </div>
@@ -71,10 +71,10 @@ const RoomsSection = () => {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section id="rooms" className="py-28 md:py-40 bg-background relative">
+    <section id="rooms" className="py-20 md:py-28 bg-background relative">
       <div ref={ref} className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-20 md:mb-28">
+        <div className="text-center mb-14 md:mb-20">
           <p className="text-accent tracking-[0.4em] uppercase text-xs mb-4 font-sans font-medium">
             Accommodations
           </p>
@@ -84,7 +84,7 @@ const RoomsSection = () => {
         </div>
 
         <div
-          className={`space-y-20 md:space-y-32 transition-all duration-1000 ${
+          className={`space-y-14 md:space-y-24 transition-all duration-1000 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
@@ -113,7 +113,7 @@ const RoomsSection = () => {
             <img
               src={rooms[2].img}
               alt={rooms[2].name}
-              className="w-full h-[400px] md:h-[600px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
+              className="w-full h-[300px] md:h-[420px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-black/30" />
