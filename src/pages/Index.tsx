@@ -7,6 +7,7 @@ import GallerySection from "@/components/GallerySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => (
   <main>
@@ -19,6 +20,7 @@ const Index = () => (
     <TestimonialsSection />
     <BookingSection />
     <Footer />
+    <ScrollToTop />
   </main>
 );
 
