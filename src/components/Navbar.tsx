@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 
@@ -7,7 +7,6 @@ const navLinks = [
   { label: "Rooms", href: "#rooms" },
   { label: "Amenities", href: "#amenities" },
   { label: "Gallery", href: "#gallery" },
-  
   { label: "Book", href: "#booking" },
 ];
 
@@ -15,12 +14,12 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Active section detection
       const sections = navLinks.map((l) => l.href.slice(1));
       let current = "";
       for (const id of sections) {
@@ -35,33 +34,79 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Dip dimensions
+  const dipWidth = 130;
+  const dipExtra = 44; // extra height for the logo dip
+  const r = 24; // corner radius for the dip
+
   return (
-    <nav
-      className={`fixed top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 z-50 transition-all duration-700 rounded-full ${
-        scrolled ? "glass-card shadow-premium" : "glass"
-      }`}
-    >
-      <div className="flex items-center justify-between px-5 sm:px-8 py-3 relative">
-        <div
-          className={`absolute left-3 sm:left-5 transition-all duration-700 rounded-b-3xl ${
-            scrolled
-              ? "top-0 h-full px-3 bg-transparent"
-              : "top-0 px-4 sm:px-5 pb-4 sm:pb-5 pt-2 sm:pt-3 glass"
+    <nav ref={navRef} className="fixed top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 z-50">
+      {/* Hidden SVG for clip path definition */}
+      <svg className="absolute" width="0" height="0" style={{ position: "absolute" }}>
+        <defs>
+          <clipPath id="nav-clip" clipPathUnits="objectBoundingBox">
+            {/* This will be applied via CSS with percentages - not used, see inline approach */}
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* Single unified background - uses border-radius trick with no borders to avoid seams */}
+      <div
+        className={`absolute left-0 right-0 top-0 transition-all duration-700 ${
+          scrolled ? "shadow-premium" : ""
+        }`}
+        style={{
+          height: scrolled ? "100%" : `calc(100% + ${dipExtra}px)`,
+          borderRadius: scrolled ? "9999px" : `9999px 9999px ${r}px ${r}px`,
+          // Glass effect inline to avoid border seam issues
+          background: scrolled
+            ? "hsla(0, 0%, 100%, 0.55)"
+            : "hsla(0, 0%, 100%, 0.08)",
+          backdropFilter: scrolled ? "blur(20px) saturate(1.5)" : "blur(24px) saturate(1.8)",
+          WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.5)" : "blur(24px) saturate(1.8)",
+          border: scrolled ? "1px solid hsla(0, 0%, 100%, 0.12)" : "1px solid hsla(0, 0%, 100%, 0.15)",
+          // Mask the shape: full width on top, only dipWidth on the extended bottom part
+          clipPath: scrolled
+            ? undefined
+            : `polygon(0 0, 100% 0, 100% calc(100% - ${dipExtra}px), ${dipWidth}px calc(100% - ${dipExtra}px), ${dipWidth}px 100%, 0 100%)`,
+        }}
+      />
+
+      {/* Inner corner radius piece - fills the sharp inner corner of the clip with a curve */}
+      {!scrolled && (
+        <>
+          {/* Round the bottom-right of the dip where it meets the main bar */}
+          <div
+            className="absolute transition-all duration-700"
+            style={{
+              left: dipWidth - r,
+              bottom: -(dipExtra - r),
+              width: r * 2,
+              height: r * 2,
+              // This creates a concave corner by masking
+              background: "transparent",
+              // We don't need this for the dip since clip-path handles the shape
+            }}
+          />
+        </>
+      )}
+
+      {/* Content layer */}
+      <div className="relative flex items-center justify-between px-5 sm:px-8 py-3" style={{ zIndex: 2 }}>
+        <a
+          href="#"
+          className={`flex items-center transition-all duration-700 ${
+            scrolled ? "" : "pb-10 sm:pb-12"
           }`}
-          style={{ zIndex: 1 }}
         >
-          <a href="#" className="flex items-center h-full">
-            <img
-              src={logo}
-              alt="Lemon Hills Hotel"
-              className={`w-auto transition-all duration-700 ${
-                scrolled ? "h-10 sm:h-12" : "h-16 sm:h-20"
-              }`}
-            />
-          </a>
-        </div>
-        {/* Invisible spacer to preserve layout */}
-        <div className={`transition-all duration-700 ${scrolled ? "w-24 sm:w-28" : "w-20 sm:w-24"}`} />
+          <img
+            src={logo}
+            alt="Lemon Hills Hotel"
+            className={`w-auto transition-all duration-700 ${
+              scrolled ? "h-10 sm:h-12" : "h-14 sm:h-16"
+            }`}
+          />
+        </a>
 
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((l) => (
@@ -97,7 +142,7 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div className="md:hidden glass-card rounded-3xl mt-2 mx-2 mb-2">
+        <div className="md:hidden glass-card rounded-3xl mt-2 mx-2 mb-2 relative" style={{ zIndex: 2 }}>
           <ul className="flex flex-col items-center gap-1 py-6">
             {navLinks.map((l) => (
               <li key={l.href}>
