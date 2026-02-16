@@ -28,7 +28,7 @@ const useCountUp = (end: number, duration = 2000, trigger = false) => {
 };
 
 const AboutSection = () => {
-  const { ref, visible } = useScrollReveal();
+  const { ref, visible, getStaggerClass, getStaggerDelay } = useScrollReveal();
   const years = useCountUp(35, 2000, visible);
   const rooms = useCountUp(200, 2000, visible);
   const guests = useCountUp(50, 2000, visible);
@@ -38,20 +38,16 @@ const AboutSection = () => {
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
+        <div className={`text-center mb-20 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-accent tracking-[0.4em] uppercase text-xs mb-4 font-sans font-medium">Our Story</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight">
             A Sanctuary of <span className="text-gradient-gold italic">Timeless Elegance</span>
           </h2>
         </div>
 
-        <div
-          className={`grid md:grid-cols-12 gap-10 md:gap-6 items-center transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          {/* Image — asymmetric overlap */}
-          <div className="md:col-span-6 relative">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-6 items-center">
+          {/* Image */}
+          <div className={`md:col-span-6 relative ${getStaggerClass(0, "left")}`} style={getStaggerDelay(0, 200)}>
             <div className="absolute -inset-4 glass-card rounded-[2.5rem] rotate-2 scale-[0.97] opacity-40" />
             <div className="relative overflow-hidden rounded-[2.5rem] shadow-premium md:-mr-16">
               <img
@@ -66,8 +62,8 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Text — overlaps image */}
-          <div className="md:col-span-6 md:pl-12 relative z-10">
+          {/* Text */}
+          <div className={`md:col-span-6 md:pl-12 relative z-10 ${getStaggerClass(1, "right")}`} style={getStaggerDelay(1, 200)}>
             <div className="w-20 h-[2px] bg-gradient-to-r from-accent to-transparent mb-8" />
             <p className="text-muted-foreground leading-relaxed mb-5 font-sans text-base">
               Since 1987, Lemon Hills Hotel has been a beacon of refined hospitality perched atop
@@ -80,14 +76,18 @@ const AboutSection = () => {
               guest is treated as family.
             </p>
 
-            {/* Animated counter stats */}
+            {/* Stats */}
             <div className="grid grid-cols-3 gap-6">
               {[
                 { num: years, suffix: "+", label: "Years of Legacy" },
                 { num: rooms, suffix: "+", label: "Luxury Rooms" },
                 { num: guests, suffix: "K+", label: "Happy Guests" },
-              ].map((s) => (
-                <div key={s.label} className="text-center md:text-left">
+              ].map((s, i) => (
+                <div
+                  key={s.label}
+                  className={`text-center md:text-left ${getStaggerClass(i + 2, "up")}`}
+                  style={getStaggerDelay(i + 2, 150)}
+                >
                   <p className="font-serif text-3xl md:text-4xl font-bold text-gradient-gold">
                     {s.num}{s.suffix}
                   </p>

@@ -13,7 +13,7 @@ const roomTypes = [
 ];
 
 const BookingSection = () => {
-  const { ref, visible } = useScrollReveal();
+  const { ref, visible, getStaggerClass, getStaggerDelay } = useScrollReveal();
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
   const [guests, setGuests] = useState("2");
@@ -31,7 +31,7 @@ const BookingSection = () => {
       </div>
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-accent tracking-[0.4em] uppercase text-xs mb-4 font-sans font-medium">Reservations</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-primary-foreground leading-tight">
             Book Your <span className="text-gradient-gold italic">Stay</span>
@@ -39,14 +39,13 @@ const BookingSection = () => {
         </div>
 
         <div
-          className={`max-w-4xl mx-auto transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
+          className={`max-w-4xl mx-auto ${getStaggerClass(0, "up")}`}
+          style={getStaggerDelay(0, 200)}
         >
           <div className="glass-strong rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 md:p-14 glow-accent">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-              {/* Check-in date picker */}
-              <div>
+              {/* Check-in */}
+              <div className={getStaggerClass(1, "up")} style={getStaggerDelay(1, 100)}>
                 <label className="text-[10px] uppercase tracking-[0.2em] mb-3 block font-sans text-primary-foreground/60 flex items-center gap-1.5">
                   <CalendarDays className="w-3.5 h-3.5" /> Check-in
                 </label>
@@ -57,20 +56,13 @@ const BookingSection = () => {
                     </button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={checkIn}
-                      onSelect={setCheckIn}
-                      disabled={(date) => date < new Date()}
-                      initialFocus
-                      className={cn("p-3 pointer-events-auto")}
-                    />
+                    <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} disabled={(date) => date < new Date()} initialFocus className={cn("p-3 pointer-events-auto")} />
                   </PopoverContent>
                 </Popover>
               </div>
 
-              {/* Check-out date picker */}
-              <div>
+              {/* Check-out */}
+              <div className={getStaggerClass(2, "up")} style={getStaggerDelay(2, 100)}>
                 <label className="text-[10px] uppercase tracking-[0.2em] mb-3 block font-sans text-primary-foreground/60 flex items-center gap-1.5">
                   <CalendarDays className="w-3.5 h-3.5" /> Check-out
                 </label>
@@ -81,46 +73,29 @@ const BookingSection = () => {
                     </button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={checkOut}
-                      onSelect={setCheckOut}
-                      disabled={(date) => date < (checkIn || new Date())}
-                      initialFocus
-                      className={cn("p-3 pointer-events-auto")}
-                    />
+                    <Calendar mode="single" selected={checkOut} onSelect={setCheckOut} disabled={(date) => date < (checkIn || new Date())} initialFocus className={cn("p-3 pointer-events-auto")} />
                   </PopoverContent>
                 </Popover>
               </div>
 
               {/* Room type */}
-              <div>
+              <div className={getStaggerClass(3, "up")} style={getStaggerDelay(3, 100)}>
                 <label className="text-[10px] uppercase tracking-[0.2em] mb-3 block font-sans text-primary-foreground/60 flex items-center gap-1.5">
                   <BedDouble className="w-3.5 h-3.5" /> Room Type
                 </label>
-                <select
-                  value={roomType}
-                  onChange={(e) => setRoomType(e.target.value)}
-                  className="w-full glass rounded-xl px-5 py-3.5 text-sm text-primary-foreground font-sans focus:outline-none focus:ring-2 focus:ring-accent/50 appearance-none transition-all"
-                >
+                <select value={roomType} onChange={(e) => setRoomType(e.target.value)} className="w-full glass rounded-xl px-5 py-3.5 text-sm text-primary-foreground font-sans focus:outline-none focus:ring-2 focus:ring-accent/50 appearance-none transition-all">
                   {roomTypes.map((r) => (
-                    <option key={r.value} value={r.value} className="text-foreground bg-card">
-                      {r.label} — ${r.price}/night
-                    </option>
+                    <option key={r.value} value={r.value} className="text-foreground bg-card">{r.label} — ${r.price}/night</option>
                   ))}
                 </select>
               </div>
 
               {/* Guests */}
-              <div>
+              <div className={getStaggerClass(4, "up")} style={getStaggerDelay(4, 100)}>
                 <label className="text-[10px] uppercase tracking-[0.2em] mb-3 block font-sans text-primary-foreground/60 flex items-center gap-1.5">
                   <Users className="w-3.5 h-3.5" /> Guests
                 </label>
-                <select
-                  value={guests}
-                  onChange={(e) => setGuests(e.target.value)}
-                  className="w-full glass rounded-xl px-5 py-3.5 text-sm text-primary-foreground font-sans focus:outline-none focus:ring-2 focus:ring-accent/50 appearance-none transition-all"
-                >
+                <select value={guests} onChange={(e) => setGuests(e.target.value)} className="w-full glass rounded-xl px-5 py-3.5 text-sm text-primary-foreground font-sans focus:outline-none focus:ring-2 focus:ring-accent/50 appearance-none transition-all">
                   {[1, 2, 3, 4, 5, 6].map((n) => (
                     <option key={n} value={n} className="text-foreground bg-card">{n} Guest{n > 1 ? "s" : ""}</option>
                   ))}
@@ -128,16 +103,11 @@ const BookingSection = () => {
               </div>
             </div>
 
-            {/* Price estimate */}
             {estimate !== null && (
               <div className="text-center mb-8 animate-fade-in">
                 <p className="text-primary-foreground/50 text-xs font-sans tracking-wider uppercase mb-1">Estimated Total</p>
-                <p className="font-serif text-3xl font-bold text-gradient-gold">
-                  ${estimate.toLocaleString()}
-                </p>
-                <p className="text-primary-foreground/40 text-xs font-sans mt-1">
-                  {nights} night{nights > 1 ? "s" : ""} × ${selectedRoom?.price}/night
-                </p>
+                <p className="font-serif text-3xl font-bold text-gradient-gold">${estimate.toLocaleString()}</p>
+                <p className="text-primary-foreground/40 text-xs font-sans mt-1">{nights} night{nights > 1 ? "s" : ""} × ${selectedRoom?.price}/night</p>
               </div>
             )}
 
