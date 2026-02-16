@@ -6,7 +6,7 @@ const navLinks = [
   { label: "Rooms", href: "#rooms" },
   { label: "Amenities", href: "#amenities" },
   { label: "Gallery", href: "#gallery" },
-  { label: "Reviews", href: "#testimonials" },
+  
   { label: "Book", href: "#booking" },
 ];
 
