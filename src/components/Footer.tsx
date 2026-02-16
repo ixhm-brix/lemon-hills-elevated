@@ -54,7 +54,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm font-sans">
               <li className="flex items-center gap-2.5 text-primary-foreground/50"><Phone className="w-3.5 h-3.5 text-accent" /> +1 (555) 987-6543</li>
               <li className="flex items-center gap-2.5 text-primary-foreground/50"><Mail className="w-3.5 h-3.5 text-accent" /> reservations@lemonhills.com</li>
-              <li className="flex items-center gap-2.5 text-primary-foreground/50"><MapPin className="w-3.5 h-3.5 text-accent" /> 42 Hillcrest Road, Greendale</li>
+              <li className="flex items-center gap-2.5 text-primary-foreground/50"><MapPin className="w-3.5 h-3.5 text-accent" /> 1 KR Ruyenzi, Lemon Hills Hotel</li>
             </ul>
           </div>
 
@@ -63,7 +63,7 @@ const Footer = () => {
             <h4 className="font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-accent mb-5">Location</h4>
             <div className="w-full h-40 rounded-2xl overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019734782523!2d-122.4194!3d37.7749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ2JzI5LjYiTiAxMjLCsDI1JzA5LjgiVw!5e0!3m2!1sen!2sus!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.5!2d29.3667!3d-2.3833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMjMnMDAuMCJTIDI5wrAyMicwMC4wIkU!5e0!3m2!1sen!2srw!4v1700000000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: "grayscale(0.8) contrast(1.1)" }}
