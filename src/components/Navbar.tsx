@@ -22,12 +22,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-card/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+      className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 rounded-2xl ${
+        scrolled
+          ? "bg-card/60 backdrop-blur-xl shadow-lg border border-border/50"
+          : "bg-white/10 backdrop-blur-md border border-white/20"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a href="#" className="font-serif text-2xl font-bold tracking-wide text-primary">
+      <div className="container mx-auto flex items-center justify-between px-6 py-3">
+        <a href="#" className={`font-serif text-2xl font-bold tracking-wide ${scrolled ? "text-primary" : "text-white"}`}>
           Lemon Hills
         </a>
 
@@ -38,7 +40,7 @@ const Navbar = () => {
               <a
                 href={l.href}
                 className={`text-sm tracking-widest uppercase transition-colors ${
-                  scrolled ? "text-foreground hover:text-accent" : "text-primary-foreground/90 hover:text-accent"
+                  scrolled ? "text-foreground hover:text-accent" : "text-white/90 hover:text-accent"
                 }`}
               >
                 {l.label}
@@ -48,14 +50,14 @@ const Navbar = () => {
         </ul>
 
         {/* Mobile toggle */}
-        <button className="md:hidden text-primary" onClick={() => setOpen(!open)}>
+        <button className={`md:hidden ${scrolled ? "text-primary" : "text-white"}`} onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-card/95 backdrop-blur-md border-t border-border">
+        <div className="md:hidden bg-card/70 backdrop-blur-xl border-t border-border/30 rounded-b-2xl">
           <ul className="flex flex-col items-center gap-4 py-6">
             {navLinks.map((l) => (
               <li key={l.href}>

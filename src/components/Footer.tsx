@@ -1,7 +1,7 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-primary text-primary-foreground/80 pt-16 pb-8">
+  <footer className="bg-primary text-primary-foreground/80 pt-16 pb-8 rounded-t-[2.5rem]">
     <div className="container mx-auto px-6">
       <div className="grid md:grid-cols-3 gap-12 mb-12">
         {/* Brand */}
@@ -25,7 +25,7 @@ const Footer = () => (
         {/* Map placeholder */}
         <div>
           <h4 className="font-serif text-sm font-semibold uppercase tracking-widest text-accent mb-4">Location</h4>
-          <div className="w-full h-40 bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center text-xs text-primary-foreground/40 font-sans">
+          <div className="w-full h-40 bg-primary-foreground/5 border border-primary-foreground/10 rounded-2xl flex items-center justify-center text-xs text-primary-foreground/40 font-sans">
             Map Placeholder
           </div>
         </div>

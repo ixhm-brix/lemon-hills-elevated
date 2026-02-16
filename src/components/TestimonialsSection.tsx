@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
           }`}
         >
           {reviews.map((r) => (
-            <div key={r.name} className="bg-secondary/50 p-8 text-center">
+            <div key={r.name} className="bg-background/50 backdrop-blur-lg border border-border/40 rounded-3xl p-8 text-center hover:shadow-xl hover:shadow-accent/5 transition-all duration-300">
               <div className="flex justify-center gap-1 mb-5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-accent text-accent" />

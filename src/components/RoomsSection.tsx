@@ -41,8 +41,8 @@ const RoomsSection = () => {
           }`}
         >
           {rooms.map((room) => (
-            <div key={room.name} className="group bg-card border border-border overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="overflow-hidden h-64">
+            <div key={room.name} className="group bg-card/60 backdrop-blur-lg border border-border/50 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500">
+              <div className="overflow-hidden h-64 rounded-t-3xl">
                 <img
                   src={room.img}
                   alt={room.name}
@@ -53,10 +53,10 @@ const RoomsSection = () => {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-serif text-xl font-semibold text-foreground">{room.name}</h3>
-                  <span className="text-accent font-sans text-sm font-medium">{room.price}<span className="text-muted-foreground text-xs"> /night</span></span>
+                  <span className="bg-accent/15 text-accent font-sans text-sm font-medium px-3 py-1 rounded-full">{room.price}<span className="text-accent/70 text-xs"> /night</span></span>
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-5 font-sans">{room.desc}</p>
-                <button className="text-xs tracking-widest uppercase text-accent hover:text-foreground transition-colors font-sans">
+                <button className="text-xs tracking-widest uppercase bg-primary/10 hover:bg-primary/20 text-primary px-5 py-2 rounded-full transition-all font-sans">
                   View Details →
                 </button>
               </div>

@@ -30,7 +30,7 @@ const GallerySection = () => {
           }`}
         >
           {images.map((img, i) => (
-            <div key={i} className={`overflow-hidden ${img.className}`}>
+            <div key={i} className={`overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 ${img.className}`}>
               <img
                 src={img.src}
                 alt={img.alt}

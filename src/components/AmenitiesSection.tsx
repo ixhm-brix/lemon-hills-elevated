@@ -26,9 +26,9 @@ const AmenitiesSection = () => {
           }`}
         >
           {amenities.map((a) => (
-            <div key={a.title} className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-accent/30 group-hover:bg-accent/10 transition-colors rounded-full">
-                <a.icon className="w-7 h-7 text-accent" strokeWidth={1.5} />
+            <div key={a.title} className="text-center group bg-background/50 backdrop-blur-lg border border-border/40 rounded-2xl p-6 hover:shadow-xl hover:shadow-accent/5 transition-all duration-300">
+              <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-accent/10 group-hover:bg-accent/20 transition-colors rounded-2xl">
+                <a.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
               </div>
               <h3 className="font-serif text-base font-semibold text-foreground mb-2">{a.title}</h3>
               <p className="text-muted-foreground text-xs leading-relaxed font-sans">{a.desc}</p>
