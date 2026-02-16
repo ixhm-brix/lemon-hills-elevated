@@ -65,24 +65,18 @@ const ExperienceSection = () => {
           {experiences.map((exp) => (
             <div
               key={exp.title}
-              className="group rounded-2xl overflow-hidden bg-background"
+              className="group relative rounded-2xl overflow-hidden"
             >
-              <div className="overflow-hidden">
-                <img
-                  src={exp.img}
-                  alt={exp.title}
-                  className="w-full h-48 object-cover group-hover:scale-[1.05] transition-transform duration-700"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
-                  {exp.title}
-                </h3>
-                <p className="text-muted-foreground text-sm font-sans leading-relaxed">
-                  {exp.desc}
-                </p>
-              </div>
+              <img
+                src={exp.img}
+                alt={exp.title}
+                className="w-full h-56 object-cover group-hover:scale-[1.05] transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <h3 className="absolute bottom-4 left-5 font-serif text-lg font-semibold text-white">
+                {exp.title}
+              </h3>
             </div>
           ))}
         </div>
