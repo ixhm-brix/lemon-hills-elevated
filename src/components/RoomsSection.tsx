@@ -52,9 +52,6 @@ const RoomText = ({ room }: { room: Room }) => (
       {room.name}
     </h3>
     <div className="w-10 h-px bg-accent mb-4" />
-    <p className="text-muted-foreground text-sm font-sans leading-relaxed mb-6 max-w-sm">
-      {room.desc}
-    </p>
     <a
       href="#booking"
       className="group/btn inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-accent font-sans font-medium hover:text-foreground transition-colors"
@@ -145,9 +142,6 @@ const RoomsSection = () => {
                   {vipRoom.name}
                 </h3>
                 <div className="w-10 h-px bg-accent mx-auto mb-4" />
-                <p className="text-white/70 text-sm font-sans leading-relaxed mb-6">
-                  {vipRoom.desc}
-                </p>
                 <a
                   href="#booking"
                   className="group/btn inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-accent font-sans font-medium hover:text-white transition-colors"
