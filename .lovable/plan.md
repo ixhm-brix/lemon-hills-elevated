@@ -1,65 +1,69 @@
 
 
-# Design Improvement Suggestions for Lemon Hills Hotel
+# Rooms Section -- Complete Redesign
 
-After reviewing every section of the website, here are targeted improvements that will elevate the design from good to truly premium and captivating.
+## The Problem
+The current design stacks three identical full-width dark image blocks (420px each) vertically. Every card looks the same -- same gradient, same layout, same positioning. It's repetitive, heavy, and feels like a stock template. There's zero visual rhythm or surprise.
 
----
+## The New Approach: Asymmetric Editorial Layout
 
-## 1. Hero Section -- Add a Video Background Option or Parallax Effect
-The hero image is strong, but adding a subtle parallax scroll effect (where the background image moves slower than the content) would create depth and a cinematic feel that immediately signals "premium." The decorative glow orbs could also pulse more subtly.
+Inspired by how Aman, Four Seasons, and other top-tier luxury hotel websites present their rooms -- with **generous whitespace, alternating asymmetric layouts, and elegant restraint**.
 
-## 2. About Section -- Add Avatar/Photo of Founder and a More Dynamic Layout
-- Add a circular avatar image or a signature graphic to personalize the story
-- Stagger the stats with animated counters that count up when scrolled into view
-- Consider an asymmetric layout where the image slightly overlaps into the text column for a more editorial, magazine-style feel
+### Design Concept
 
-## 3. Rooms Section -- Horizontal Scroll Carousel on Mobile
-- On mobile, the 3 stacked cards take up a lot of vertical space. A horizontal swipeable carousel would feel more modern and app-like
-- Add a subtle ribbon/badge design for the room tags instead of the current pill badges
-- Add small amenity icons (bed, bathtub, area size) below each room description
+Instead of identical stacked dark blocks, each room gets a unique visual treatment with an **alternating two-column layout**:
 
-## 4. Amenities Section -- More Visual Impact
-- The current icon cards feel flat and generic. Replace with larger cards that have a subtle background image or gradient behind each icon
-- Consider a bento-grid layout (uneven card sizes) instead of 5 equal columns, which would add visual interest
-- Add hover animations where the icon gently bounces or the card lifts with a glow
+- **Room 1 (Deluxe)**: Large image on the LEFT (60% width), text content on the RIGHT with generous padding, on the light cream background
+- **Room 2 (Executive)**: Text on the LEFT, large image on the RIGHT -- reversed layout for visual rhythm
+- **Room 3 (Presidential)**: Full-width cinematic hero image with a centered glass overlay card containing the text -- a "showstopper" finale
 
-## 5. Gallery Section -- Add Lightbox and Category Filters
-- Clicking a gallery image should open a full-screen lightbox overlay with navigation arrows
-- Add filter tabs above the gallery (All, Rooms, Dining, Pool, Spa) for interactivity
-- Consider adding a subtle Ken Burns (slow zoom) animation on the images
+### Key Design Elements
 
-## 6. Testimonials Section -- Add Guest Photos and a Carousel
-- Add circular avatar photos for each reviewer to build trust and add visual warmth
-- Convert to a carousel/slider for a more dynamic feel instead of a static 3-column grid
-- Add a large decorative quote mark behind the testimonial text
+1. **Whitespace-first**: Cream/light background (`bg-background`) instead of the dark `bg-section-alt` block. Let the images breathe.
+2. **Rounded image frames**: Images wrapped in `rounded-[2rem]` containers with subtle shadow, not edge-to-edge.
+3. **Elegant typography**: Room name in large serif, details in spaced uppercase sans-serif, description in light muted text. Price displayed subtly -- not shouting like e-commerce.
+4. **Thin gold accent line** separating the detail text from the room name for a refined touch.
+5. **Hover interactions**: Image scales subtly on hover (`scale-[1.03]`), Reserve link arrow slides right.
+6. **Mobile**: Clean vertical stack with each room as a tall image card with text below (not overlaid), maintaining the minimal feel.
 
-## 7. Booking Section -- Inline Date Picker and Better Visual Hierarchy
-- Replace the plain date inputs with an actual visual calendar picker (using the existing react-day-picker)
-- Add a room type selector dropdown to the booking form
-- Add a subtle price estimate preview that updates as users select options
+### Visual Rhythm
 
-## 8. Footer -- Embed a Real Map and Add Newsletter Signup
-- Replace "Map Placeholder" with an embedded Google Maps iframe or a styled static map image
-- Add a newsletter signup field with email input and a "Subscribe" button
-- Add social media icons (actual icons instead of text links) for a more polished look
+```text
++--------------------------------------------------+
+|  [  IMAGE (60%)  ]    Room Name (serif)           |
+|  [  rounded-2rem ]    King Bed . Rain Shower      |
+|  [               ]    ────── (gold line)          |
+|  [               ]    Description text...         |
+|  [               ]    $320/night   Reserve ->     |
++--------------------------------------------------+
+|                                                    |
++--------------------------------------------------+
+|    Room Name (serif)    [  IMAGE (60%)  ]         |
+|    Super King . Bath    [  rounded-2rem ]         |
+|    ────── (gold line)   [               ]         |
+|    Description text...  [               ]         |
+|    $580/night Reserve   [               ]         |
++--------------------------------------------------+
+|                                                    |
++--------------------------------------------------+
+|        [ FULL-WIDTH CINEMATIC IMAGE ]             |
+|        [   glass overlay card in center   ]       |
+|        [   Presidential Suite . $1,200    ]       |
++--------------------------------------------------+
+```
 
-## 9. Global Improvements
-- **Scroll-to-top button**: Add a floating button that appears after scrolling, styled with glassmorphism
-- **Section transitions**: Add wave or curved dividers between sections instead of hard color breaks
-- **Loading animation**: Add a brief branded loading screen on first visit
-- **Active nav indicator**: Highlight the current section in the navbar as the user scrolls
-- **Micro-interactions**: Add subtle hover effects on all interactive elements (buttons glow, cards tilt slightly)
+## Technical Details
 
----
+### File: `src/components/RoomsSection.tsx`
+- Remove the dark `bg-section-alt` background, use `bg-background` (cream)
+- Replace the single `rooms.map` with individual, hand-crafted layouts for each room to allow asymmetry
+- First two rooms: CSS Grid `grid-cols-1 md:grid-cols-5` with `col-span-3` for image and `col-span-2` for text (reversed for the second)
+- Third room: full-width relative image container with a centered `glass-strong` overlay
+- Mobile: Simple vertical stack -- image (rounded, full-width) followed by text block underneath
+- Keep the existing `useScrollReveal` hook for entrance animation
+- Remove embla carousel for mobile (not needed with this cleaner layout)
+- Each room separated by generous `py-16 md:py-24` spacing
 
-## Priority Recommendation
-
-If you want the biggest visual impact with the least effort, I would recommend starting with:
-1. **Amenities bento grid redesign** (biggest visual upgrade)
-2. **Gallery lightbox** (adds interactivity)
-3. **Testimonials with avatars and carousel** (builds trust)
-4. **Scroll-to-top button + active nav highlighting** (polish)
-
-Let me know which improvements you'd like to implement, or I can do them all!
+### No other files need changes
+The existing CSS utilities (`glass-strong`, `text-gradient-gold`, `glow-accent`, etc.) and Tailwind config already support everything needed.
 
