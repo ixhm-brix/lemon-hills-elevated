@@ -52,9 +52,6 @@ const ExperienceSection = () => {
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight">
             The <span className="text-gradient-gold italic">Experience</span>
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base font-sans mt-5 max-w-xl mx-auto leading-relaxed">
-            Every detail at Lemon Hills is designed to immerse you in luxury, nature, and tranquility.
-          </p>
         </div>
 
         <div

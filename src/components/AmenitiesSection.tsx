@@ -50,7 +50,7 @@ const AmenitiesSection = () => {
                   <a.icon className="w-7 h-7 text-accent group-hover:animate-float" strokeWidth={1.5} />
                 </div>
                 <h3 className="font-serif text-base font-semibold text-foreground mb-2">{a.title}</h3>
-                <p className="text-muted-foreground text-xs leading-relaxed font-sans max-w-[200px]">{a.desc}</p>
+                
               </div>
             </div>
           ))}

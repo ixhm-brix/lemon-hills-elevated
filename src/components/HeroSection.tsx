@@ -39,10 +39,6 @@ const HeroSection = () => {
           <span className="text-gradient-gold italic">Meets Nature</span>
         </h1>
 
-        <p className="text-white/75 text-base md:text-lg lg:text-xl mb-12 max-w-2xl mx-auto font-sans font-light leading-relaxed animate-fade-in-up [animation-delay:0.6s] opacity-0 drop-shadow-sm">
-          Nestled among lush green hills, Lemon Hills Hotel offers an unparalleled escape
-          into serenity, elegance, and world-class hospitality.
-        </p>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-up [animation-delay:0.8s] opacity-0 px-2">
           <a
