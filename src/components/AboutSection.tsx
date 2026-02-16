@@ -12,7 +12,7 @@ const AboutSection = () => {
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <div className="overflow-hidden">
+        <div className="overflow-hidden rounded-3xl shadow-xl">
           <img
             src={aboutImg}
             alt="Lemon Hills Hotel exterior with pool and gardens"
