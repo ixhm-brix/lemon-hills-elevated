@@ -9,51 +9,49 @@ const HeroSection = () => (
       loading="eager"
     />
     {/* Cinematic gradient overlays */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70" />
-    <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/60" />
+    <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
 
     {/* Floating decorative glow orbs */}
     <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] animate-glow-pulse" />
     <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-accent/8 rounded-full blur-[100px] animate-glow-pulse [animation-delay:1.5s]" />
 
     <div className="relative z-10 text-center px-6 max-w-4xl">
-      <div className="glass-strong rounded-[2.5rem] p-12 md:p-16 lg:p-20 glow-accent">
-        {/* Top decorative line */}
-        <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-8 opacity-80" />
+      {/* Top decorative line */}
+      <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-8 opacity-80" />
 
-        <p className="text-accent tracking-[0.5em] uppercase text-xs md:text-sm mb-6 font-sans font-medium animate-fade-in-up [animation-delay:0.2s] opacity-0">
-          Five-Star Hilltop Resort
-        </p>
+      <p className="text-accent tracking-[0.5em] uppercase text-xs md:text-sm mb-6 font-sans font-medium animate-fade-in-up [animation-delay:0.2s] opacity-0">
+        Five-Star Hilltop Resort
+      </p>
 
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 animate-fade-in-up [animation-delay:0.4s] opacity-0">
-          Where Luxury<br />
-          <span className="text-gradient-gold italic">Meets Nature</span>
-        </h1>
+      <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 animate-fade-in-up [animation-delay:0.4s] opacity-0 drop-shadow-lg">
+        Where Luxury<br />
+        <span className="text-gradient-gold italic">Meets Nature</span>
+      </h1>
 
-        <p className="text-white/70 text-base md:text-lg lg:text-xl mb-12 max-w-2xl mx-auto font-sans font-light leading-relaxed animate-fade-in-up [animation-delay:0.6s] opacity-0">
-          Nestled among lush green hills, Lemon Hills Hotel offers an unparalleled escape
-          into serenity, elegance, and world-class hospitality.
-        </p>
+      <p className="text-white/75 text-base md:text-lg lg:text-xl mb-12 max-w-2xl mx-auto font-sans font-light leading-relaxed animate-fade-in-up [animation-delay:0.6s] opacity-0 drop-shadow-sm">
+        Nestled among lush green hills, Lemon Hills Hotel offers an unparalleled escape
+        into serenity, elegance, and world-class hospitality.
+      </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up [animation-delay:0.8s] opacity-0">
-          <a
-            href="#booking"
-            className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground px-10 py-4 rounded-full text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5"
-          >
-            Book Your Escape
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </a>
-          <a
-            href="#rooms"
-            className="inline-flex items-center justify-center glass hover:bg-white/15 text-white px-10 py-4 rounded-full text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:-translate-y-0.5"
-          >
-            Explore Rooms
-          </a>
-        </div>
-
-        {/* Bottom decorative line */}
-        <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-10 opacity-80" />
+      <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up [animation-delay:0.8s] opacity-0">
+        <a
+          href="#booking"
+          className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground px-10 py-4 rounded-full text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5"
+        >
+          Book Your Escape
+          <span className="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+        <a
+          href="#rooms"
+          className="inline-flex items-center justify-center border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-full text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:-translate-y-0.5"
+        >
+          Explore Rooms
+        </a>
       </div>
+
+      {/* Bottom decorative line */}
+      <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-12 opacity-80" />
     </div>
 
     {/* Scroll indicator */}
