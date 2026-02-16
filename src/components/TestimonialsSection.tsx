@@ -52,7 +52,7 @@ const TestimonialsSection = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section id="testimonials" className="py-28 md:py-40 bg-background relative overflow-hidden">
+    <section id="testimonials" className="py-16 sm:py-24 md:py-40 bg-background relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/4 rounded-full blur-[150px]" />
 
       {/* Large decorative quote */}
@@ -77,7 +77,7 @@ const TestimonialsSection = () => {
             <div className="flex">
               {reviews.map((r) => (
                 <div key={r.name} className="flex-[0_0_100%] min-w-0 px-4">
-                  <div className="glass-card rounded-[2rem] p-10 md:p-14 text-center max-w-2xl mx-auto">
+                  <div className="glass-card rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 md:p-14 text-center max-w-2xl mx-auto">
                     {/* Avatar */}
                     <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/15 flex items-center justify-center border-2 border-accent/30">
                       <span className="font-serif text-lg font-bold text-accent">{r.initials}</span>

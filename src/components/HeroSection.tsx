@@ -11,7 +11,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[560px] sm:min-h-[640px] md:min-h-[700px] flex items-center justify-center overflow-hidden">
       <img
         src={heroImg}
         alt="Lemon Hills Hotel hilltop resort at golden hour"
@@ -34,7 +34,7 @@ const HeroSection = () => {
           Five-Star Hilltop Resort
         </p>
 
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 animate-fade-in-up [animation-delay:0.4s] opacity-0 drop-shadow-lg">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-6 sm:mb-8 animate-fade-in-up [animation-delay:0.4s] opacity-0 drop-shadow-lg">
           Where Luxury<br />
           <span className="text-gradient-gold italic">Meets Nature</span>
         </h1>
@@ -44,17 +44,17 @@ const HeroSection = () => {
           into serenity, elegance, and world-class hospitality.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up [animation-delay:0.8s] opacity-0">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-up [animation-delay:0.8s] opacity-0 px-2">
           <a
             href="#booking"
-            className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground px-10 py-4 rounded-full text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5"
+            className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5"
           >
             Book Your Escape
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </a>
           <a
             href="#rooms"
-            className="inline-flex items-center justify-center border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-full text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center border border-white/30 hover:bg-white/10 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm tracking-[0.2em] uppercase transition-all font-sans font-medium hover:-translate-y-0.5"
           >
             Explore Rooms
           </a>
