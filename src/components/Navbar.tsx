@@ -41,15 +41,16 @@ const Navbar = () => {
         scrolled ? "glass-card shadow-premium" : "glass"
       }`}
     >
-      <div className="flex items-center justify-between px-5 sm:px-8 py-3">
+      <div className="flex items-center justify-between px-5 sm:px-8 py-3 relative">
         <div
-          className={`relative transition-all duration-700 rounded-full ${
+          className={`absolute left-3 sm:left-5 transition-all duration-700 rounded-b-3xl ${
             scrolled
-              ? "p-0 bg-transparent shadow-none"
-              : "p-3 sm:p-4 bg-white/20 backdrop-blur-md shadow-lg glow-accent -mb-8 sm:-mb-10"
+              ? "top-0 h-full px-3 bg-transparent"
+              : "top-0 px-4 sm:px-5 pb-4 sm:pb-5 pt-2 sm:pt-3 glass-card"
           }`}
+          style={{ zIndex: 1 }}
         >
-          <a href="#" className="flex items-center">
+          <a href="#" className="flex items-center h-full">
             <img
               src={logo}
               alt="Lemon Hills Hotel"
@@ -59,6 +60,8 @@ const Navbar = () => {
             />
           </a>
         </div>
+        {/* Invisible spacer to preserve layout */}
+        <div className={`transition-all duration-700 ${scrolled ? "w-24 sm:w-28" : "w-20 sm:w-24"}`} />
 
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((l) => (
