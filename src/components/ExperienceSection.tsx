@@ -1,36 +1,41 @@
-import { Leaf, Mountain, Utensils, Sparkles, Heart, Waves } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import expHilltop from "@/assets/exp-hilltop.jpg";
+import expDining from "@/assets/exp-dining.jpg";
+import expPool from "@/assets/exp-pool.jpg";
+import expSpa from "@/assets/exp-spa.jpg";
+import expGarden from "@/assets/exp-garden.jpg";
+import expEvents from "@/assets/exp-events.jpg";
 
 const experiences = [
   {
-    icon: Mountain,
     title: "Hilltop Retreats",
     desc: "Guided nature walks through lush hills with breathtaking panoramic views at sunrise.",
+    img: expHilltop,
   },
   {
-    icon: Utensils,
     title: "Fine Dining",
     desc: "Farm-to-table cuisine crafted by world-class chefs using locally sourced ingredients.",
+    img: expDining,
   },
   {
-    icon: Waves,
     title: "Infinity Pool",
     desc: "A stunning hillside pool overlooking the valley — perfect for unwinding at golden hour.",
+    img: expPool,
   },
   {
-    icon: Sparkles,
     title: "Luxury Spa",
     desc: "Holistic treatments and traditional therapies designed to restore mind and body.",
+    img: expSpa,
   },
   {
-    icon: Leaf,
     title: "Garden Sanctuary",
     desc: "Wander through our curated botanical gardens, a peaceful escape into nature.",
+    img: expGarden,
   },
   {
-    icon: Heart,
     title: "Private Events",
     desc: "Celebrate special moments in our exclusive event spaces with bespoke hospitality.",
+    img: expEvents,
   },
 ];
 
@@ -60,17 +65,24 @@ const ExperienceSection = () => {
           {experiences.map((exp) => (
             <div
               key={exp.title}
-              className="glass rounded-2xl p-8 group hover:bg-accent/5 transition-all duration-500"
+              className="group rounded-2xl overflow-hidden bg-background"
             >
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
-                <exp.icon className="w-5 h-5 text-accent" />
+              <div className="overflow-hidden">
+                <img
+                  src={exp.img}
+                  alt={exp.title}
+                  className="w-full h-48 object-cover group-hover:scale-[1.05] transition-transform duration-700"
+                  loading="lazy"
+                />
               </div>
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                {exp.title}
-              </h3>
-              <p className="text-muted-foreground text-sm font-sans leading-relaxed">
-                {exp.desc}
-              </p>
+              <div className="p-6">
+                <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+                  {exp.title}
+                </h3>
+                <p className="text-muted-foreground text-sm font-sans leading-relaxed">
+                  {exp.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>
