@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, ArrowUpRight, Instagram, Facebook, Twitter, Send } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -12,9 +13,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           {/* Brand + Newsletter */}
           <div className="md:col-span-1">
-            <h3 className="font-serif text-2xl font-bold mb-4">
-              <span className="text-gradient-gold">Lemon</span> Hills
-            </h3>
+            <img src={logo} alt="Lemon Hills Hotel" className="h-14 w-auto mb-4" />
             <p className="text-primary-foreground/50 text-sm leading-relaxed font-sans mb-6">
               A five-star hilltop resort where timeless elegance meets the untouched beauty of nature.
             </p>
