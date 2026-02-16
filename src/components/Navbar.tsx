@@ -42,9 +42,23 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center justify-between px-5 sm:px-8 py-3">
-        <a href="#" className="flex items-center">
-          <img src={logo} alt="Lemon Hills Hotel" className="h-10 sm:h-12 w-auto" />
-        </a>
+        <div
+          className={`relative transition-all duration-700 rounded-full ${
+            scrolled
+              ? "p-0 bg-transparent shadow-none"
+              : "p-3 sm:p-4 bg-white/20 backdrop-blur-md shadow-lg glow-accent -mb-8 sm:-mb-10"
+          }`}
+        >
+          <a href="#" className="flex items-center">
+            <img
+              src={logo}
+              alt="Lemon Hills Hotel"
+              className={`w-auto transition-all duration-700 ${
+                scrolled ? "h-10 sm:h-12" : "h-16 sm:h-20"
+              }`}
+            />
+          </a>
+        </div>
 
         <ul className="hidden md:flex items-center gap-1">
           {navLinks.map((l) => (
