@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -41,9 +42,8 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center justify-between px-5 sm:px-8 py-3">
-        <a href="#" className={`font-serif text-xl font-bold tracking-wide transition-colors duration-500 ${scrolled ? "text-foreground" : "text-white"}`}>
-          <span className="text-gradient-gold">Lemon</span>{" "}
-          <span className={scrolled ? "text-foreground" : "text-white"}>Hills</span>
+        <a href="#" className="flex items-center">
+          <img src={logo} alt="Lemon Hills Hotel" className="h-10 sm:h-12 w-auto" />
         </a>
 
         <ul className="hidden md:flex items-center gap-1">
