@@ -18,7 +18,7 @@ const allImages = [
 const categories = ["All", "Rooms", "Dining", "Pool", "Spa"];
 
 const GallerySection = () => {
-  const { ref, visible } = useScrollReveal();
+  const { ref, visible, getStaggerClass, getStaggerDelay } = useScrollReveal();
   const [activeFilter, setActiveFilter] = useState("All");
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
@@ -34,15 +34,14 @@ const GallerySection = () => {
       <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-accent tracking-[0.4em] uppercase text-xs mb-4 font-sans font-medium">Moments</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-primary-foreground leading-tight">
             Our <span className="text-gradient-gold italic">Gallery</span>
           </h2>
         </div>
 
-        {/* Filter tabs */}
-        <div className="flex justify-center gap-2 mb-12 flex-wrap">
+        <div className={`flex justify-center gap-2 mb-12 flex-wrap transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           {categories.map((cat) => (
             <button
               key={cat}
@@ -58,16 +57,13 @@ const GallerySection = () => {
           ))}
         </div>
 
-        <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[150px] sm:auto-rows-[200px] md:auto-rows-[260px] transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[150px] sm:auto-rows-[200px] md:auto-rows-[260px]">
           {filtered.map((img, i) => (
             <div
               key={i}
               onClick={() => openLightbox(i)}
-              className={`group overflow-hidden rounded-[1.5rem] relative cursor-pointer ${img.className}`}
+              className={`group overflow-hidden rounded-[1.5rem] relative cursor-pointer ${img.className} ${getStaggerClass(i, "scale")}`}
+              style={getStaggerDelay(i, 120)}
             >
               <img
                 src={img.src}
@@ -90,22 +86,13 @@ const GallerySection = () => {
           className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
-          <button
-            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-10"
-          >
+          <button onClick={(e) => { e.stopPropagation(); closeLightbox(); }} className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-10">
             <X className="w-8 h-8" />
           </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); prevImage(); }}
-            className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-colors z-10"
-          >
+          <button onClick={(e) => { e.stopPropagation(); prevImage(); }} className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-colors z-10">
             <ChevronLeft className="w-10 h-10" />
           </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); nextImage(); }}
-            className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-colors z-10"
-          >
+          <button onClick={(e) => { e.stopPropagation(); nextImage(); }} className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-colors z-10">
             <ChevronRight className="w-10 h-10" />
           </button>
           <img

@@ -5,39 +5,18 @@ import presImg from "@/assets/room-presidential.jpg";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const standardRooms = [
-  {
-    name: "Twin Room",
-    detail: "Two Single Beds · 28 m²",
-    desc: "A comfortable retreat with twin beds, ideal for friends or colleagues travelling together.",
-    img: deluxeImg,
-  },
-  {
-    name: "Single Room",
-    detail: "Single Bed · Compact · 18 m²",
-    desc: "An intimate, well-appointed space designed for the solo traveller seeking quiet comfort.",
-    img: execImg,
-  },
+  { name: "Twin Room", detail: "Two Single Beds · 28 m²", desc: "", img: deluxeImg },
+  { name: "Single Room", detail: "Single Bed · Compact · 18 m²", desc: "", img: execImg },
 ];
 
 const deluxeRooms = [
-  {
-    name: "Deluxe Double Room",
-    detail: "Queen Bed · Rain Shower · 42 m²",
-    desc: "Elevated comfort with plush furnishings, nature views, and premium bath amenities.",
-    img: deluxeImg,
-  },
-  {
-    name: "Double Deluxe Room",
-    detail: "King Bed · Lounge Area · 55 m²",
-    desc: "Generous living space with a separate lounge, perfect for extended stays in style.",
-    img: execImg,
-  },
+  { name: "Deluxe Double Room", detail: "Queen Bed · Rain Shower · 42 m²", desc: "", img: deluxeImg },
+  { name: "Double Deluxe Room", detail: "King Bed · Lounge Area · 55 m²", desc: "", img: execImg },
 ];
 
 const vipRoom = {
   name: "VIP Suite",
   detail: "Emperor Bed · Jacuzzi · Private Terrace · 120 m²",
-  desc: "The pinnacle of luxury — panoramic views, marble bath, and dedicated butler service.",
   img: presImg,
 };
 
@@ -76,11 +55,15 @@ const RoomImage = ({ room }: { room: Room }) => (
 const RoomPair = ({
   rooms,
   label,
-  reverse,
+  staggerStart = 0,
+  getStaggerClass,
+  getStaggerDelay,
 }: {
   rooms: Room[];
   label: string;
-  reverse?: boolean;
+  staggerStart?: number;
+  getStaggerClass: (i: number, v?: "up" | "left" | "right" | "scale") => string;
+  getStaggerDelay: (i: number, base?: number) => React.CSSProperties;
 }) => (
   <div>
     <p className="text-accent/60 tracking-[0.3em] uppercase text-[9px] font-sans font-medium mb-8 text-center">
@@ -88,7 +71,11 @@ const RoomPair = ({
     </p>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14">
       {rooms.map((room, i) => (
-        <div key={room.name} className="space-y-5">
+        <div
+          key={room.name}
+          className={`space-y-5 ${getStaggerClass(staggerStart + i, i % 2 === 0 ? "left" : "right")}`}
+          style={getStaggerDelay(staggerStart + i, 150)}
+        >
           <RoomImage room={room} />
           <RoomText room={room} />
         </div>
@@ -98,13 +85,12 @@ const RoomPair = ({
 );
 
 const RoomsSection = () => {
-  const { ref, visible } = useScrollReveal();
+  const { ref, visible, getStaggerClass, getStaggerDelay } = useScrollReveal();
 
   return (
     <section id="rooms" className="py-16 sm:py-20 md:py-28 bg-background relative">
       <div ref={ref} className="container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-14 md:mb-20">
+        <div className={`text-center mb-14 md:mb-20 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-accent tracking-[0.4em] uppercase text-xs mb-4 font-sans font-medium">
             Accommodations
           </p>
@@ -113,19 +99,15 @@ const RoomsSection = () => {
           </h2>
         </div>
 
-        <div
-          className={`space-y-16 md:space-y-24 transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          {/* Standard Rooms — side by side */}
-          <RoomPair rooms={standardRooms} label="Standard" />
+        <div className="space-y-16 md:space-y-24">
+          <RoomPair rooms={standardRooms} label="Standard" staggerStart={0} getStaggerClass={getStaggerClass} getStaggerDelay={getStaggerDelay} />
+          <RoomPair rooms={deluxeRooms} label="Deluxe" staggerStart={2} getStaggerClass={getStaggerClass} getStaggerDelay={getStaggerDelay} />
 
-          {/* Deluxe Rooms — side by side */}
-          <RoomPair rooms={deluxeRooms} label="Deluxe" />
-
-          {/* VIP Suite — full-width cinematic with glass overlay */}
-          <div className="relative group overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
+          {/* VIP Suite */}
+          <div
+            className={`relative group overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] ${getStaggerClass(4, "scale")}`}
+            style={getStaggerDelay(4, 150)}
+          >
             <img
               src={vipRoom.img}
               alt={vipRoom.name}
