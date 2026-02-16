@@ -7,20 +7,9 @@ const navLinks = [
   { label: "Rooms", href: "#rooms" },
   { label: "Amenities", href: "#amenities" },
   { label: "Gallery", href: "#gallery" },
+  
   { label: "Book", href: "#booking" },
 ];
-
-const glassStyle = {
-  background: "hsla(0, 0%, 100%, 0.08)",
-  backdropFilter: "blur(24px) saturate(1.8)",
-  WebkitBackdropFilter: "blur(24px) saturate(1.8)",
-} as const;
-
-const glassCardStyle = {
-  background: "hsla(0, 0%, 100%, 0.55)",
-  backdropFilter: "blur(20px) saturate(1.5)",
-  WebkitBackdropFilter: "blur(20px) saturate(1.5)",
-} as const;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,6 +19,8 @@ const Navbar = () => {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Active section detection
       const sections = navLinks.map((l) => l.href.slice(1));
       let current = "";
       for (const id of sections) {
@@ -44,49 +35,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const dipExtra = 30;
-
   return (
-    <nav className="fixed top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 z-50">
-      {/* Background: two overlapping rounded divs, no borders, same glass = seamless */}
-      {/* Main bar background */}
-      <div
-        className={`absolute top-0 left-0 right-0 transition-all duration-700 ${
-          scrolled ? "shadow-premium" : ""
-        }`}
-        style={{
-          height: "100%",
-          borderRadius: "9999px",
-          ...(scrolled ? glassCardStyle : glassStyle),
-        }}
-      />
-      {/* Logo dip extension - overlaps with main bar on the left */}
-      <div
-        className="absolute top-0 left-0 transition-all duration-700"
-        style={{
-          width: scrolled ? "0px" : "120px",
-          height: scrolled ? "100%" : `calc(100% + ${dipExtra}px)`,
-          borderRadius: scrolled ? "9999px" : "9999px 0 1.25rem 1.25rem",
-          opacity: scrolled ? 0 : 1,
-          ...(scrolled ? glassCardStyle : glassStyle),
-        }}
-      />
-
-      {/* Content layer */}
-      <div className="relative flex items-center justify-between px-5 sm:px-8 py-3" style={{ zIndex: 2 }}>
-        <a
-          href="#"
-          className={`flex items-center transition-all duration-700 ${
-            scrolled ? "" : "pb-7"
-          }`}
-        >
-          <img
-            src={logo}
-            alt="Lemon Hills Hotel"
-            className={`w-auto transition-all duration-700 ${
-              scrolled ? "h-10 sm:h-12" : "h-12 sm:h-14"
-            }`}
-          />
+    <nav
+      className={`fixed top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 z-50 transition-all duration-700 rounded-full ${
+        scrolled ? "glass-card shadow-premium" : "glass"
+      }`}
+    >
+      <div className="flex items-center justify-between px-5 sm:px-8 py-3">
+        <a href="#" className="flex items-center">
+          <img src={logo} alt="Lemon Hills Hotel" className="h-10 sm:h-12 w-auto" />
         </a>
 
         <ul className="hidden md:flex items-center gap-1">
@@ -123,7 +80,7 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div className="md:hidden glass-card rounded-3xl mt-2 mx-2 mb-2 relative" style={{ zIndex: 2 }}>
+        <div className="md:hidden glass-card rounded-3xl mt-2 mx-2 mb-2">
           <ul className="flex flex-col items-center gap-1 py-6">
             {navLinks.map((l) => (
               <li key={l.href}>

@@ -1,51 +1,69 @@
 
 
-# Unified Irregular Navbar Shape with Logo Dip
+# Rooms Section -- Complete Redesign
 
-## What You Want
-Instead of a separate badge sitting on top of the navbar, the navbar itself will have an irregular shape -- it dips downward on the left side to cradle the logo. The entire thing is one continuous glass surface with no visual separation. Think of it as the navbar "growing" a bump downward on the left where the logo sits.
+## The Problem
+The current design stacks three identical full-width dark image blocks (420px each) vertically. Every card looks the same -- same gradient, same layout, same positioning. It's repetitive, heavy, and feels like a stock template. There's zero visual rhythm or surprise.
 
-## How It Works
+## The New Approach: Asymmetric Editorial Layout
 
-1. **At the top (not scrolled)**:
-   - The navbar is one single element with an irregular shape: flat on the right, but dipping down on the left for the logo
-   - Achieved using an SVG clip-path or a pseudo-element approach so the glass background flows seamlessly across the entire shape
-   - The logo sits in the dipped area, fully visible with the same frosted glass behind it
-   - No visible border or separation between the logo area and the nav links area
+Inspired by how Aman, Four Seasons, and other top-tier luxury hotel websites present their rooms -- with **generous whitespace, alternating asymmetric layouts, and elegant restraint**.
 
-2. **On scroll (scrolled state)**:
-   - The dip smoothly retracts and the navbar becomes a regular rounded pill shape (as it is now)
-   - The logo shrinks to fit inline
+### Design Concept
 
-## Technical Approach
+Instead of identical stacked dark blocks, each room gets a unique visual treatment with an **alternating two-column layout**:
 
-### File: `src/components/Navbar.tsx`
+- **Room 1 (Deluxe)**: Large image on the LEFT (60% width), text content on the RIGHT with generous padding, on the light cream background
+- **Room 2 (Executive)**: Text on the LEFT, large image on the RIGHT -- reversed layout for visual rhythm
+- **Room 3 (Presidential)**: Full-width cinematic hero image with a centered glass overlay card containing the text -- a "showstopper" finale
 
-- Remove the separate absolute-positioned logo container
-- Instead, use a single navbar wrapper with a CSS clip-path that creates the irregular shape (flat top-right, dipped bottom-left)
-- The clip-path transitions between the irregular shape (not scrolled) and a standard rounded rectangle (scrolled)
-- Since CSS `clip-path` doesn't animate smoothly with `polygon`, we'll use an alternative approach:
-  - Use a single container with dynamic padding/height on the left side
-  - Apply `border-radius` creatively: large bottom-left radius when expanded, uniform radius when scrolled
-  - The navbar background (glass effect) covers the entire irregular shape as one surface
-- The logo and nav links sit inside the same flex container, with the left side having extra bottom padding when not scrolled
+### Key Design Elements
 
-### Implementation Detail
-- The navbar will use `grid` or `flex` layout where the left column (logo area) has a taller height when not scrolled
-- `overflow: visible` on the navbar so the taller left section extends below
-- A single background div behind everything with matching border-radius handles the unified glass look
-- The background div uses the same `glass` class and has `rounded-full` on the right side but `rounded-b-3xl` on the left when expanded
-- On scroll, everything transitions to uniform `rounded-full`
+1. **Whitespace-first**: Cream/light background (`bg-background`) instead of the dark `bg-section-alt` block. Let the images breathe.
+2. **Rounded image frames**: Images wrapped in `rounded-[2rem]` containers with subtle shadow, not edge-to-edge.
+3. **Elegant typography**: Room name in large serif, details in spaced uppercase sans-serif, description in light muted text. Price displayed subtly -- not shouting like e-commerce.
+4. **Thin gold accent line** separating the detail text from the room name for a refined touch.
+5. **Hover interactions**: Image scales subtly on hover (`scale-[1.03]`), Reserve link arrow slides right.
+6. **Mobile**: Clean vertical stack with each room as a tall image card with text below (not overlaid), maintaining the minimal feel.
 
-### Alternative (cleaner) approach -- Background Shape Element
-- Keep the current layout structure
-- Add a single background `div` that spans both the navbar area AND the logo dip area as one shape
-- This background div has the glass styling and uses border-radius to create the seamless irregular shape
-- Both the nav content and the logo are positioned on top of this single background
-- On scroll, the background shape smoothly morphs into a regular pill
+### Visual Rhythm
 
-This approach gives the cleanest result: one glass surface, one shape, no seams.
+```text
++--------------------------------------------------+
+|  [  IMAGE (60%)  ]    Room Name (serif)           |
+|  [  rounded-2rem ]    King Bed . Rain Shower      |
+|  [               ]    ────── (gold line)          |
+|  [               ]    Description text...         |
+|  [               ]    $320/night   Reserve ->     |
++--------------------------------------------------+
+|                                                    |
++--------------------------------------------------+
+|    Room Name (serif)    [  IMAGE (60%)  ]         |
+|    Super King . Bath    [  rounded-2rem ]         |
+|    ────── (gold line)   [               ]         |
+|    Description text...  [               ]         |
+|    $580/night Reserve   [               ]         |
++--------------------------------------------------+
+|                                                    |
++--------------------------------------------------+
+|        [ FULL-WIDTH CINEMATIC IMAGE ]             |
+|        [   glass overlay card in center   ]       |
+|        [   Presidential Suite . $1,200    ]       |
++--------------------------------------------------+
+```
 
-### File: `src/index.css`
-- No changes needed
+## Technical Details
+
+### File: `src/components/RoomsSection.tsx`
+- Remove the dark `bg-section-alt` background, use `bg-background` (cream)
+- Replace the single `rooms.map` with individual, hand-crafted layouts for each room to allow asymmetry
+- First two rooms: CSS Grid `grid-cols-1 md:grid-cols-5` with `col-span-3` for image and `col-span-2` for text (reversed for the second)
+- Third room: full-width relative image container with a centered `glass-strong` overlay
+- Mobile: Simple vertical stack -- image (rounded, full-width) followed by text block underneath
+- Keep the existing `useScrollReveal` hook for entrance animation
+- Remove embla carousel for mobile (not needed with this cleaner layout)
+- Each room separated by generous `py-16 md:py-24` spacing
+
+### No other files need changes
+The existing CSS utilities (`glass-strong`, `text-gradient-gold`, `glow-accent`, etc.) and Tailwind config already support everything needed.
 
