@@ -46,7 +46,7 @@ const Navbar = () => {
           className={`absolute left-3 sm:left-5 transition-all duration-700 rounded-b-3xl ${
             scrolled
               ? "top-0 h-full px-3 bg-transparent"
-              : "top-0 px-4 sm:px-5 pb-4 sm:pb-5 pt-2 sm:pt-3 glass-card"
+              : "top-0 px-4 sm:px-5 pb-4 sm:pb-5 pt-2 sm:pt-3 glass"
           }`}
           style={{ zIndex: 1 }}
         >
