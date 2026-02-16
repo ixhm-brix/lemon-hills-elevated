@@ -24,7 +24,7 @@ const BookingSection = () => {
   const estimate = nights > 0 && selectedRoom ? nights * selectedRoom.price : null;
 
   return (
-    <section id="booking" className="py-28 md:py-40 bg-primary relative overflow-hidden">
+    <section id="booking" className="py-16 sm:py-24 md:py-40 bg-primary relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-20 right-20 w-80 h-80 bg-accent/8 rounded-full blur-[100px]" />
         <div className="absolute bottom-20 left-20 w-60 h-60 bg-accent/5 rounded-full blur-[80px]" />
@@ -43,7 +43,7 @@ const BookingSection = () => {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <div className="glass-strong rounded-[2rem] p-10 md:p-14 glow-accent">
+          <div className="glass-strong rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 md:p-14 glow-accent">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
               {/* Check-in date picker */}
               <div>

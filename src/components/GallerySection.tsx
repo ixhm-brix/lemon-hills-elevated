@@ -30,7 +30,7 @@ const GallerySection = () => {
   const nextImage = () => setLightboxIdx((prev) => (prev !== null ? (prev + 1) % filtered.length : null));
 
   return (
-    <section id="gallery" className="py-28 md:py-40 bg-section-alt relative overflow-hidden">
+    <section id="gallery" className="py-16 sm:py-24 md:py-40 bg-section-alt relative overflow-hidden">
       <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
@@ -59,7 +59,7 @@ const GallerySection = () => {
         </div>
 
         <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[260px] transition-all duration-1000 ${
+          className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[150px] sm:auto-rows-[200px] md:auto-rows-[260px] transition-all duration-1000 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >

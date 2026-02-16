@@ -70,7 +70,7 @@ const RoomImage = ({ room }: { room: Room }) => (
     <img
       src={room.img}
       alt={room.name}
-      className="w-full h-[220px] md:h-[300px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
+      className="w-full h-[180px] sm:h-[220px] md:h-[300px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
       loading="lazy"
     />
   </div>
@@ -104,7 +104,7 @@ const RoomsSection = () => {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section id="rooms" className="py-20 md:py-28 bg-background relative">
+    <section id="rooms" className="py-16 sm:py-20 md:py-28 bg-background relative">
       <div ref={ref} className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14 md:mb-20">
@@ -128,16 +128,16 @@ const RoomsSection = () => {
           <RoomPair rooms={deluxeRooms} label="Deluxe" />
 
           {/* VIP Suite — full-width cinematic with glass overlay */}
-          <div className="relative group overflow-hidden rounded-[2rem]">
+          <div className="relative group overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
             <img
               src={vipRoom.img}
               alt={vipRoom.name}
-              className="w-full h-[300px] md:h-[420px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
+              className="w-full h-[280px] sm:h-[320px] md:h-[420px] object-cover group-hover:scale-[1.03] transition-transform duration-700"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-black/30" />
-            <div className="absolute inset-0 flex items-center justify-center p-6">
-              <div className="glass-strong rounded-[1.5rem] px-10 py-10 md:px-14 md:py-12 text-center max-w-lg">
+            <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+              <div className="glass-strong rounded-[1rem] sm:rounded-[1.5rem] px-6 py-6 sm:px-10 sm:py-10 md:px-14 md:py-12 text-center max-w-lg">
                 <p className="text-accent tracking-[0.35em] uppercase text-[10px] font-sans font-medium mb-3">
                   {vipRoom.detail}
                 </p>

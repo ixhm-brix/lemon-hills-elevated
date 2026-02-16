@@ -43,7 +43,7 @@ const ExperienceSection = () => {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section id="experience" className="py-20 md:py-28 bg-section-alt relative">
+    <section id="experience" className="py-16 sm:py-20 md:py-28 bg-section-alt relative">
       <div ref={ref} className="container mx-auto px-6">
         <div className="text-center mb-14 md:mb-20">
           <p className="text-accent tracking-[0.4em] uppercase text-xs mb-4 font-sans font-medium">
@@ -58,7 +58,7 @@ const ExperienceSection = () => {
         </div>
 
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 transition-all duration-1000 ${
+          className={`grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 md:gap-8 transition-all duration-1000 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
@@ -70,11 +70,11 @@ const ExperienceSection = () => {
               <img
                 src={exp.img}
                 alt={exp.title}
-                className="w-full h-56 object-cover group-hover:scale-[1.05] transition-transform duration-700"
+                className="w-full h-40 sm:h-48 md:h-56 object-cover group-hover:scale-[1.05] transition-transform duration-700"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <h3 className="absolute bottom-4 left-5 font-serif text-lg font-semibold text-white">
+              <h3 className="absolute bottom-3 left-3 sm:bottom-4 sm:left-5 font-serif text-sm sm:text-lg font-semibold text-white">
                 {exp.title}
               </h3>
             </div>

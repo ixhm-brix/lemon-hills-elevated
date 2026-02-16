@@ -36,11 +36,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-5 left-5 right-5 z-50 transition-all duration-700 rounded-full ${
+      className={`fixed top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 z-50 transition-all duration-700 rounded-full ${
         scrolled ? "glass-card shadow-premium" : "glass"
       }`}
     >
-      <div className="flex items-center justify-between px-8 py-3">
+      <div className="flex items-center justify-between px-5 sm:px-8 py-3">
         <a href="#" className={`font-serif text-xl font-bold tracking-wide transition-colors duration-500 ${scrolled ? "text-foreground" : "text-white"}`}>
           <span className="text-gradient-gold">Lemon</span>{" "}
           <span className={scrolled ? "text-foreground" : "text-white"}>Hills</span>
