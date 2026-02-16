@@ -57,17 +57,15 @@ const Navbar = () => {
         }`}
         style={{
           height: scrolled ? "100%" : `calc(100% + ${dipExtra}px)`,
-          borderRadius: scrolled ? "9999px" : `9999px 9999px ${r}px ${r}px`,
-          // Glass effect inline to avoid border seam issues
+          borderRadius: scrolled ? "9999px" : "0",
           background: scrolled
             ? "hsla(0, 0%, 100%, 0.55)"
             : "hsla(0, 0%, 100%, 0.08)",
           backdropFilter: scrolled ? "blur(20px) saturate(1.5)" : "blur(24px) saturate(1.8)",
           WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.5)" : "blur(24px) saturate(1.8)",
           border: scrolled ? "1px solid hsla(0, 0%, 100%, 0.12)" : "1px solid hsla(0, 0%, 100%, 0.15)",
-          // Mask the shape: full width on top, only dipWidth on the extended bottom part
           clipPath: scrolled
-            ? undefined
+            ? "inset(0 round 9999px)"
             : `polygon(0 0, 100% 0, 100% calc(100% - ${dipExtra}px), ${dipWidth}px calc(100% - ${dipExtra}px), ${dipWidth}px 100%, 0 100%)`,
         }}
       />
