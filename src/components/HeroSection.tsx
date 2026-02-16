@@ -59,12 +59,6 @@ const HeroSection = () => {
         <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-12 opacity-80" />
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-float">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-1.5">
-          <div className="w-1 h-2.5 bg-white/60 rounded-full animate-fade-in-up" />
-        </div>
-      </div>
     </section>
   );
 };
