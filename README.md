@@ -1,73 +1,52 @@
-# Welcome to your Lovable project
+# Lemon Hills Hotel — Where Luxury Meets Nature
 
-## Project info
+A premium marketing and booking website for **Lemon Hills Hotel**, a five-star hilltop resort in Rwanda.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Hero Section** — Full-screen parallax hero with animated CTAs
+- **Experience Section** — Showcases hilltop retreats, fine dining, infinity pool, spa, gardens, and private events
+- **Rooms & Suites** — Twin, Single, Deluxe Double, Double Deluxe, and VIP Suite with image galleries
+- **Amenities** — Interactive cards for pool, dining, spa, conference hall, and WiFi
+- **Photo Gallery** — Filterable image gallery with lightbox viewer
+- **Booking** — Date pickers, room selector, guest count, and live price estimator with confirmation toasts
+- **Footer** — Newsletter signup, Google Maps embed, contact info, and social links
+- **Scroll Animations** — Scroll-reveal effects throughout the site
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- [Vite](https://vite.dev) + [React](https://react.dev) + [TypeScript](https://www.typescriptlang.org)
+- [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com)
+- [Embla Carousel](https://www.embla-carousel.com) for carousels
+- [Recharts](https://recharts.org) for charts
+- [Sonner](https://sonner.emilkowal.dev) for toast notifications
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Getting Started
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+├── assets/          # Hotel images and logo
+├── components/      # React components (Hero, Rooms, Gallery, Booking, etc.)
+│   └── ui/          # shadcn/ui base components
+├── hooks/           # Custom hooks (useScrollReveal, etc.)
+├── lib/             # Utility functions
+├── pages/           # Page components (Index, NotFound)
+└── main.tsx         # App entry point
+```
 
-**Use GitHub Codespaces**
+## License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+© 2026 Lemon Hills Hotel. All rights reserved.

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, ArrowUpRight, Instagram, Facebook, Twitter, Send } from "lucide-react";
+import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -18,7 +19,15 @@ const Footer = () => {
               A five-star hilltop resort where timeless elegance meets the untouched beauty of nature.
             </p>
             {/* Newsletter */}
-            <div className="flex gap-2">
+            <form className="flex gap-2" onSubmit={(e) => {
+              e.preventDefault();
+              if (!email.trim()) {
+                toast.error("Please enter your email.");
+                return;
+              }
+              toast.success("Thanks for subscribing!", { description: "You'll receive our latest offers and updates." });
+              setEmail("");
+            }}>
               <input
                 type="email"
                 value={email}
@@ -26,17 +35,17 @@ const Footer = () => {
                 placeholder="Your email"
                 className="flex-1 glass rounded-full px-4 py-2.5 text-xs text-primary-foreground font-sans placeholder:text-primary-foreground/30 focus:outline-none focus:ring-1 focus:ring-accent/50"
               />
-              <button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full p-2.5 transition-all hover:shadow-lg hover:shadow-accent/20">
+              <button type="submit" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full p-2.5 transition-all hover:shadow-lg hover:shadow-accent/20">
                 <Send className="w-3.5 h-3.5" />
               </button>
-            </div>
+            </form>
           </div>
 
           {/* Quick links */}
           <div>
             <h4 className="font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-accent mb-5">Explore</h4>
             <ul className="space-y-3 text-sm font-sans">
-              {["About", "Rooms", "Amenities", "Gallery"].map((l) => (
+              {["Rooms", "Amenities", "Gallery"].map((l) => (
                 <li key={l}>
                   <a href={`#${l.toLowerCase()}`} className="text-primary-foreground/50 hover:text-accent transition-colors flex items-center gap-1 group">
                     {l}
@@ -44,6 +53,12 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <a href="#rooms" className="text-primary-foreground/50 hover:text-accent transition-colors flex items-center gap-1 group">
+                  Booking
+                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -51,7 +66,7 @@ const Footer = () => {
           <div>
             <h4 className="font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-accent mb-5">Contact</h4>
             <ul className="space-y-3 text-sm font-sans">
-              <li className="flex items-center gap-2.5 text-primary-foreground/50"><Phone className="w-3.5 h-3.5 text-accent" /> +1 (555) 987-6543</li>
+              <li className="flex items-center gap-2.5 text-primary-foreground/50"><Phone className="w-3.5 h-3.5 text-accent" /> +250 788 123 456</li>
               <li className="flex items-center gap-2.5 text-primary-foreground/50"><Mail className="w-3.5 h-3.5 text-accent" /> reservations@lemonhills.com</li>
               <li className="flex items-center gap-2.5 text-primary-foreground/50"><MapPin className="w-3.5 h-3.5 text-accent" /> 1 KR Ruyenzi, Lemon Hills Hotel</li>
             </ul>
@@ -62,7 +77,7 @@ const Footer = () => {
             <h4 className="font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-accent mb-5">Location</h4>
             <div className="w-full h-40 rounded-2xl overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.5!2d29.3667!3d-2.3833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMjMnMDAuMCJTIDI5wrAyMicwMC4wIkU!5e0!3m2!1sen!2srw!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15949.8!2d29.85!3d-1.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca6e0fd1b729f%3A0x8ba3e0a3e5d7fbf!2sKigali%2C+Rwanda!5e0!3m2!1sen!2srw!4v1700000000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: "grayscale(0.8) contrast(1.1)" }}
@@ -79,13 +94,15 @@ const Footer = () => {
           <p className="text-[11px] font-sans text-primary-foreground/30">© 2026 Lemon Hills Hotel. All rights reserved.</p>
           <div className="flex gap-4">
             {[
-              { icon: Facebook, label: "Facebook" },
-              { icon: Instagram, label: "Instagram" },
-              { icon: Twitter, label: "Twitter" },
+              { icon: Facebook, label: "Facebook", href: "https://facebook.com/lemonhillshotel" },
+              { icon: Instagram, label: "Instagram", href: "https://instagram.com/lemonhillshotel" },
+              { icon: Twitter, label: "Twitter", href: "https://twitter.com/lemonhillshotel" },
             ].map((s) => (
               <a
                 key={s.label}
-                href="#"
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={s.label}
                 className="glass rounded-full p-2.5 text-primary-foreground/40 hover:text-accent hover:bg-accent/10 transition-all"
               >
