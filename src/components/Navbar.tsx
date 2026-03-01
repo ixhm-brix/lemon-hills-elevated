@@ -4,10 +4,11 @@ import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Rooms", href: "/#rooms" },
+  { label: "Offers", href: "/#offers" },
   { label: "Amenities", href: "/#amenities" },
   { label: "Events", href: "/events" },
   { label: "Gallery", href: "/#gallery" },
-  { label: "Book", href: "/#rooms" },
+  { label: "About", href: "/#about" },
 ];
 
 const Navbar = () => {

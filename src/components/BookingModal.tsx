@@ -331,6 +331,22 @@ const StepReview = ({
             </div>
         </div>
 
+        {/* Cancellation policy notice */}
+        <div className="bg-muted rounded-xl px-5 py-4 mb-6 space-y-1.5">
+            <p className="text-[10px] uppercase tracking-[0.2em] font-sans text-muted-foreground font-semibold">
+                Booking Policies
+            </p>
+            <p className="text-xs font-sans text-foreground/70 leading-relaxed">
+                <span className="font-medium text-foreground">Check-in:</span> 2:00 PM &nbsp;·&nbsp; <span className="font-medium text-foreground">Check-out:</span> 12:00 PM
+            </p>
+            <p className="text-xs font-sans text-foreground/70 leading-relaxed">
+                <span className="font-medium text-foreground">Cancellation:</span> Free cancellation up to 48 hours before arrival. Cancellations within 48 hours incur a one-night charge.
+            </p>
+            <p className="text-xs font-sans text-foreground/70 leading-relaxed">
+                <span className="font-medium text-foreground">Breakfast:</span> Included with Deluxe & VIP rooms. Available as add-on ($25/person/day) for Standard rooms.
+            </p>
+        </div>
+
         <div className="flex gap-3">
             <button
                 onClick={onBack}

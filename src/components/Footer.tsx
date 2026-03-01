@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, ArrowUpRight, Instagram, Facebook, Twitter, Send } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUpRight, Instagram, Facebook, Twitter, Send, Clock } from "lucide-react";
 import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
@@ -19,6 +19,12 @@ const Footer = () => {
               A five-star hilltop resort where timeless elegance meets the untouched beauty of nature.
             </p>
             {/* Newsletter */}
+            <p className="text-primary-foreground/70 text-xs font-sans font-semibold uppercase tracking-[0.15em] mb-2">
+              Get 10% Off Your First Stay
+            </p>
+            <p className="text-primary-foreground/40 text-xs font-sans leading-relaxed mb-4">
+              Subscribe for exclusive member rates, seasonal packages, and Rwanda travel inspiration.
+            </p>
             <form className="flex gap-2" onSubmit={(e) => {
               e.preventDefault();
               if (!email.trim()) {
@@ -45,20 +51,22 @@ const Footer = () => {
           <div>
             <h4 className="font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-accent mb-5">Explore</h4>
             <ul className="space-y-3 text-sm font-sans">
-              {["Rooms", "Amenities", "Gallery"].map((l) => (
-                <li key={l}>
-                  <a href={`#${l.toLowerCase()}`} className="text-primary-foreground/50 hover:text-accent transition-colors flex items-center gap-1 group">
-                    {l}
+              {[
+                { label: "Rooms", href: "#rooms" },
+                { label: "Amenities", href: "#amenities" },
+                { label: "Special Offers", href: "#offers" },
+                { label: "Gallery", href: "#gallery" },
+                { label: "Our Story", href: "#about" },
+                { label: "Events", href: "/events" },
+                { label: "FAQ", href: "#faq" },
+              ].map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className="text-primary-foreground/50 hover:text-accent transition-colors flex items-center gap-1 group">
+                    {l.label}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
               ))}
-              <li>
-                <a href="#rooms" className="text-primary-foreground/50 hover:text-accent transition-colors flex items-center gap-1 group">
-                  Booking
-                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -66,10 +74,25 @@ const Footer = () => {
           <div>
             <h4 className="font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-accent mb-5">Contact</h4>
             <ul className="space-y-3 text-sm font-sans">
-              <li className="flex items-center gap-2.5 text-primary-foreground/50"><Phone className="w-3.5 h-3.5 text-accent" /> +250 788 123 456</li>
-              <li className="flex items-center gap-2.5 text-primary-foreground/50"><Mail className="w-3.5 h-3.5 text-accent" /> reservations@lemonhills.com</li>
-              <li className="flex items-center gap-2.5 text-primary-foreground/50"><MapPin className="w-3.5 h-3.5 text-accent" /> 1 KR Ruyenzi, Lemon Hills Hotel</li>
+              <li className="flex items-center gap-2.5 text-primary-foreground/50"><Phone className="w-3.5 h-3.5 text-accent shrink-0" /> +250 788 123 456</li>
+              <li className="flex items-center gap-2.5 text-primary-foreground/50"><Mail className="w-3.5 h-3.5 text-accent shrink-0" /> reservations@lemonhills.com</li>
+              <li className="flex items-start gap-2.5 text-primary-foreground/50"><MapPin className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" /> 1 KR Ruyenzi, Lemon Hills Hotel, Kigali</li>
             </ul>
+            <div className="mt-5 pt-5 border-t border-primary-foreground/10 space-y-2">
+              <p className="text-[10px] uppercase tracking-[0.2em] font-sans text-accent font-semibold mb-3">Hotel Hours</p>
+              <div className="flex items-center gap-2.5 text-primary-foreground/50 text-xs font-sans">
+                <Clock className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span><span className="text-primary-foreground/70 font-medium">Check-in:</span> 2:00 PM</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-primary-foreground/50 text-xs font-sans">
+                <Clock className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span><span className="text-primary-foreground/70 font-medium">Check-out:</span> 12:00 PM</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-primary-foreground/50 text-xs font-sans">
+                <Clock className="w-3.5 h-3.5 text-accent shrink-0" />
+                <span><span className="text-primary-foreground/70 font-medium">Front Desk:</span> 24 / 7</span>
+              </div>
+            </div>
           </div>
 
           {/* Map embed */}
