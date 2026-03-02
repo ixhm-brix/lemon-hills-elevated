@@ -58,7 +58,6 @@ const Footer = () => {
                 { label: "Gallery", href: "#gallery" },
                 { label: "Our Story", href: "#about" },
                 { label: "Events", href: "/events" },
-                { label: "FAQ", href: "#faq" },
               ].map((l) => (
                 <li key={l.label}>
                   <a href={l.href} className="text-primary-foreground/50 hover:text-accent transition-colors flex items-center gap-1 group">
